@@ -67,7 +67,7 @@ export default function Navbar() {
                 duration={500}
                 offset={-80}
                 activeClass="text-yellow-400"
-                className="text-gray-300 cursor-pointer hover:text-yellow-400 transition-colors font-medium"
+                className="text-gray-300 orbitron font-medium cursor-pointer hover:text-yellow-400 transition-colors"
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}

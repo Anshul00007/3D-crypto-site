@@ -48,7 +48,7 @@ export const Home = () => {
       >
         <motion.h1
           variants={textVariants}
-          className="text-5xl md:text-6xl font-bold text-yellow-400 mb-4"
+          className="text-5xl md:text-6xl orbitron font-bold text-yellow-400 mb-4 text-glow animate-glow"
         >
           Welcome to <br />
           <motion.span 
@@ -63,9 +63,9 @@ export const Home = () => {
         
         <motion.p
           variants={textVariants}
-          className="text-lg md:text-xl text-gray-300 mt-6"
+          className="text-lg md:text-xl text-gray-300 mt-10"
         >
-          Premium Trading Solutions
+         <span className='typewriter-text'>Premium Trading Solutions for <span className='text-yellow-500'> Crypto </span> & <span className='text-yellow-500'>USDT </span> Exchange</span>
         </motion.p>
       </motion.div>
     </SectionWrapper>
@@ -96,7 +96,7 @@ export const About = () => {
           variants={staggerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
         >
           <motion.h2 
             variants={itemVariants}
@@ -140,7 +140,7 @@ export const Services = () => {
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
           className="text-4xl font-bold text-yellow-400 mb-12 text-center"
         >
           Our Services
@@ -153,7 +153,7 @@ export const Services = () => {
               variants={cardVariants}
               initial="offscreen"
               whileInView="onscreen"
-              viewport={{ once: true, amount: 0.5 }}
+              viewport={{ once: false, amount: 0.5 }}
               className="p-8 bg-gray-800/50 rounded-xl border border-yellow-400/30 backdrop-blur-sm hover:border-yellow-400/50 transition-all"
             >
               <div className="flex flex-col items-start">
@@ -194,7 +194,7 @@ export const Contact = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="mb-12 text-center"
         >
           <h2 className="text-4xl font-bold text-yellow-400 mb-4">Contact Us</h2>
@@ -205,7 +205,7 @@ export const Contact = () => {
           variants={formVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="space-y-8"
         >
           <motion.div variants={inputVariants}>
