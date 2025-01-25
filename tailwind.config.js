@@ -2,6 +2,9 @@ export default {
     // ... other config
     theme: {
       extend: {
+        backgroundImage: {
+            'radial-gradient': 'radial-gradient(circle at center, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%)',
+          },
         animation: {
           glow: 'glow-pulse 2s ease-in-out infinite',
         },

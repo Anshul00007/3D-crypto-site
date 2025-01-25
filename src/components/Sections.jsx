@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import bitCoinImg from '../assets/bitcoin.svg'
+import bitCoinImg from '../assets/bitcoin.svg';
+import dots from '../assets/dotss.svg'
 import { 
   CurrencyDollarIcon,
   ArrowsRightLeftIcon,
@@ -22,7 +23,7 @@ const SectionWrapper = ({ children, id }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-      className="min-h-screen flex items-center overflow-x-hidden justify-center p-8 pt-20"
+      className="min-h-screen flex items-center relative overflow-x-hidden justify-center p-8 pt-16"
     >
       {children}
     </motion.section>
@@ -48,8 +49,9 @@ export const Home = () => {
 
   return (
     <SectionWrapper id="home">
+      <div className='hidden bottom-10 left-20 lg:block md:block md:absolute'><img src={dots} alt="dot" className='w-96'/></div>
       <motion.div 
-        className="text-center"
+        className="text-center relative z-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -73,7 +75,7 @@ export const Home = () => {
           variants={textVariants}
           className="text-lg md:text-xl text-gray-300 mt-10"
         >
-         <span className='typewriter-text'>Premium Trading Solutions for <span className='text-yellow-500'>  Crypto </span> & <span className='text-yellow-500 text-glow'>USDT </span> Exchange</span>
+         <span className='typewriter-text'>Premium Trading Solutions for <span className='text-yellow-500 text-glow-yellow'>  Crypto </span> & <span className='text-yellow-500 text-glow-yellow'>USDT </span> Exchange</span>
         </motion.p>
       </motion.div>
     </SectionWrapper>
@@ -107,10 +109,10 @@ export const About = () => {
           viewport={{ once: false, amount: 0.2 }}
           className='flex flex-col lg:justify-center items-center gap-4'
         >
-        <div className='grow '>
+        <div className='grow'>
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl font-bold orbitron text-yellow-400 mb-12"
+            className="text-4xl font-bold orbitron text-shadow-yellow text-yellow-400 mb-12"
           >
             About Us
           </motion.h2>
@@ -189,7 +191,7 @@ export const Services = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-4xl font-bold text-yellow-400 mb-12 text-center"
+          className="text-4xl font-bold text-yellow-400 text-shadow-yellow orbitron mb-12 text-center"
         >
           Our Services
         </motion.h2>
@@ -208,7 +210,7 @@ export const Services = () => {
                 <div className="mb-6">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-yellow-400 mb-4 text-center">
+                <h3 className="text-xl font-semibold text-glow-yellow text-yellow-400 mb-4 text-center">
                   {service.title}
                 </h3>
                 <p className="text-gray-300 text-md text-center">
@@ -250,7 +252,7 @@ export const Contact = () => {
           viewport={{ once: false }}
           className="mb-12 text-center"
         >
-          <h2 className="text-4xl font-bold orbitron text-yellow-400 mb-4">Contact Us</h2>
+          <h2 className="text-4xl font-bold orbitron text-shadow-yellow text-yellow-400 mb-4">Contact Us</h2>
           <p className="text-gray-300">Get in touch with our experts</p>
         </motion.div>
 
@@ -265,7 +267,7 @@ export const Contact = () => {
             <input
               type="email"
               placeholder="Your Email"
-              className="w-full p-4 bg-gray-800/50 border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+              className="w-full p-4 bg-gray-800/50 border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-2 focus:ring-yellow-400/20 transition-all glow-box"
             />
           </motion.div>
 
@@ -273,7 +275,7 @@ export const Contact = () => {
             <textarea
               placeholder="Your Message"
               rows="5"
-              className="w-full p-4 bg-gray-800/50 border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+              className="w-full p-4 bg-gray-800/50 border border-yellow-400/30 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-2 focus:ring-yellow-400/20 transition-all glow-box"
             />
           </motion.div>
 
