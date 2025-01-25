@@ -124,7 +124,7 @@ export default function Navbar() {
                       duration={500}
                       offset={-80}
                       activeClass="text-yellow-400"
-                      className="text-xl text-gray-300 cursor-pointer hover:text-yellow-400 transition-colors"
+                      className="text-xl text-gray-300 cursor-pointer orbitron hover:text-yellow-400 transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <motion.div

@@ -4,6 +4,8 @@ html {
     scroll-behavior: smooth;
 }
 
+
+
 @import "tailwindcss";
 
 /* In your main CSS file */
@@ -19,7 +21,7 @@ html {
   
     @keyframes typing {
       from { width: 0 }
-      to { width: 100% }
+      to { width: 90% }
     }
   
     @keyframes blink-caret {
@@ -29,11 +31,10 @@ html {
   }
 
 @layer utility {
-
 .orbitron {
   font-family: "Orbitron", serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 }

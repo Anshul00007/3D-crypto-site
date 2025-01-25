@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import bitCoinImg from '../assets/bitcoin.svg'
 
 const SectionWrapper = ({ children, id }) => {
   const [ref, inView] = useInView({
@@ -14,7 +15,7 @@ const SectionWrapper = ({ children, id }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-      className="min-h-screen flex items-center justify-center p-8 pt-24"
+      className="min-h-screen flex items-center justify-center p-8 pt-20"
     >
       {children}
     </motion.section>
@@ -65,7 +66,7 @@ export const Home = () => {
           variants={textVariants}
           className="text-lg md:text-xl text-gray-300 mt-10"
         >
-         <span className='typewriter-text'>Premium Trading Solutions for <span className='text-yellow-500'> Crypto </span> & <span className='text-yellow-500'>USDT </span> Exchange</span>
+         <span className='typewriter-text'>Premium Trading Solutions for <span className='text-yellow-500'>  Crypto </span> & <span className='text-yellow-500 text-glow'>USDT </span> Exchange</span>
         </motion.p>
       </motion.div>
     </SectionWrapper>
@@ -97,10 +98,12 @@ export const About = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
+          className='flex flex-col lg:justify-center items-center gap-4'
         >
+        <div className='grow '>
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl font-bold text-yellow-400 mb-8"
+            className="text-4xl font-bold orbitron text-yellow-400 mb-12"
           >
             About Us
           </motion.h2>
@@ -114,6 +117,16 @@ export const About = () => {
             Our team of professionals is dedicated to helping you navigate 
             the complex world of financial markets with confidence.
           </motion.p>
+          </div>
+          <img src={bitCoinImg} alt="fd" className='w-32 gap-5 z-10 md:w-40 md:mt-10 lg:w-44 animate-bounce lg:self-end' />
+          
+          <motion.p 
+            variants={itemVariants}
+            className="text-gray-300 text-lg leading-relaxed"
+          >
+           We are a trusted trading company specializing in cryptocurrency and USDT exchanges. Our services are designed for secure, face-to-face transactions, ensuring transparency and trust. We prioritize personalized support to help clients navigate the complexities of digital trading. Partner with us for a reliable and seamless trading experience..
+          </motion.p>
+
         </motion.div>
       </div>
     </SectionWrapper>
@@ -141,7 +154,7 @@ export const Services = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
-          className="text-4xl font-bold text-yellow-400 mb-12 text-center"
+          className="text-4xl font-bold orbitron text-yellow-400 mb-12 text-center"
         >
           Our Services
         </motion.h2>
@@ -197,7 +210,7 @@ export const Contact = () => {
           viewport={{ once: false }}
           className="mb-12 text-center"
         >
-          <h2 className="text-4xl font-bold text-yellow-400 mb-4">Contact Us</h2>
+          <h2 className="text-4xl font-bold orbitron text-yellow-400 mb-4">Contact Us</h2>
           <p className="text-gray-300">Get in touch with our experts</p>
         </motion.div>
 
@@ -231,7 +244,7 @@ export const Contact = () => {
           >
             <button
               type="submit"
-              className="w-full py-4 bg-yellow-400/90 text-black font-bold rounded-lg hover:bg-yellow-400 transition-all"
+              className="w-full py-4 bg-yellow-400/90 orbitron text-black font-extrabold rounded-lg hover:bg-yellow-400 transition-all"
             >
               Send Message
             </button>
