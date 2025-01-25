@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-scroll';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 100], [1, 0.95]);
+  
   const navItems = [
     { name: 'Home', to: 'home' },
     { name: 'About', to: 'about' },
@@ -12,8 +15,24 @@ export default function Navbar() {
   ];
 
   const menuVariants = {
-    open: { x: 0, transition: { type: 'tween', duration: 0.3 } },
-    closed: { x: '100%', transition: { type: 'tween', duration: 0.3 } }
+    open: { 
+      x: 0, 
+      transition: { 
+        type: 'tween', 
+        duration: 0.3,
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      } 
+    },
+    closed: { 
+      x: '100%', 
+      transition: { 
+        type: 'tween', 
+        duration: 0.3,
+        staggerChildren: 0.1,
+        staggerDirection: -1
+      } 
+    }
   };
 
   const itemVariants = {
@@ -22,11 +41,21 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 backdrop-blur-lg bg-white/10 border-b border-yellow-400/20">
+    <motion.nav 
+      style={{ opacity }}
+      className="fixed w-full top-0 z-50 backdrop-blur-lg bg-black/80 border-b border-yellow-400/20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <span className="text-2xl font-bold text-yellow-400">INFINITY TRADERS</span>
-          
+          <motion.span 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl font-bold text-yellow-400"
+          >
+            INFINITY TRADERS
+          </motion.span>
+
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
@@ -40,13 +69,20 @@ export default function Navbar() {
                 activeClass="text-yellow-400"
                 className="text-gray-300 cursor-pointer hover:text-yellow-400 transition-colors font-medium"
               >
-                {item.name}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.name}
+                </motion.div>
               </Link>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             className="md:hidden p-2 text-gray-300 hover:text-yellow-400"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
@@ -60,17 +96,19 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
-          </button>
+          </motion.button>
         </div>
 
+        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
+              key="mobile-menu"
               initial="closed"
               animate="open"
               exit="closed"
               variants={menuVariants}
-              className="fixed top-16 border-t border-l border-yellow-400/30 right-0 h-[calc(100vh-4rem)] w-64 bg-black/95 backdrop-blur-lg md:hidden z-50 shadow-2xl"
+              className="fixed top-16 right-0 h-[calc(100vh-4rem)] w-64 bg-black/95 backdrop-blur-lg md:hidden z-50 shadow-2xl border-l border-yellow-400/20"
             >
               <div className="flex flex-col items-start p-6 space-y-6">
                 {navItems.map((item) => (
@@ -89,7 +127,12 @@ export default function Navbar() {
                       className="text-xl text-gray-300 cursor-pointer hover:text-yellow-400 transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      {item.name}
+                      <motion.div
+                        whileHover={{ x: 5 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
+                        {item.name}
+                      </motion.div>
                     </Link>
                   </motion.div>
                 ))}
@@ -98,6 +141,6 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
