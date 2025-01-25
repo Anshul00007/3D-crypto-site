@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import bitCoinImg from '../assets/bitcoin.svg'
+import { 
+  CurrencyDollarIcon,
+  ArrowsRightLeftIcon,
+  ChatBubbleBottomCenterTextIcon,
+  DocumentTextIcon,
+  ShieldCheckIcon
+} from '@heroicons/react/24/outline';
 
 const SectionWrapper = ({ children, id }) => {
   const [ref, inView] = useInView({
@@ -15,7 +22,7 @@ const SectionWrapper = ({ children, id }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-      className="min-h-screen flex items-center justify-center p-8 pt-20"
+      className="min-h-screen flex items-center overflow-x-hidden justify-center p-8 pt-20"
     >
       {children}
     </motion.section>
@@ -118,14 +125,14 @@ export const About = () => {
             the complex world of financial markets with confidence.
           </motion.p>
           </div>
-          <img src={bitCoinImg} alt="fd" className='w-32 gap-5 z-10 md:w-40 md:mt-10 lg:w-44 animate-bounce lg:self-end' />
           
           <motion.p 
             variants={itemVariants}
-            className="text-gray-300 text-lg leading-relaxed"
+            className="text-gray-300 text-lg pb-14 leading-relaxed"
           >
            We are a trusted trading company specializing in cryptocurrency and USDT exchanges. Our services are designed for secure, face-to-face transactions, ensuring transparency and trust. We prioritize personalized support to help clients navigate the complexities of digital trading. Partner with us for a reliable and seamless trading experience..
           </motion.p>
+          <img src={bitCoinImg} alt="fd" className='w-32 z-10 md:w-40 md:mt-15 lg:w-44 animate-bounce lg:self-end' />
 
         </motion.div>
       </div>
@@ -134,6 +141,34 @@ export const About = () => {
 };
 
 export const Services = () => {
+  const services = [
+    {
+      title: 'Crypto Trading',
+      icon: <CurrencyDollarIcon className="w-12 h-12 text-yellow-400" />,
+      description: 'Secure and efficient cryptocurrency trading across multiple blockchain networks'
+    },
+    {
+      title: 'USDT Exchange',
+      icon: <ArrowsRightLeftIcon className="w-12 h-12 text-yellow-400" />,
+      description: 'Instant USDT conversions with competitive rates and low transaction fees'
+    },
+    {
+      title: 'Face to Face Meeting',
+      icon: <ChatBubbleBottomCenterTextIcon className="w-12 h-12 text-yellow-400" />,
+      description: 'Personalized consultation through secure in-person or virtual meetings'
+    },
+    {
+      title: 'Record Keeping',
+      icon: <DocumentTextIcon className="w-12 h-12 text-yellow-400" />,
+      description: 'Comprehensive transaction history and audit-ready documentation'
+    },
+    {
+      title: 'Secure Trading & Transaction',
+      icon: <ShieldCheckIcon className="w-12 h-12 text-yellow-400" />,
+      description: 'Military-grade encryption for all trades and financial transactions'
+    }
+  ];
+
   const cardVariants = {
     offscreen: { opacity: 0, y: 50 },
     onscreen: { 
@@ -153,26 +188,31 @@ export const Services = () => {
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
-          className="text-4xl font-bold orbitron text-yellow-400 mb-12 text-center"
+          viewport={{ once: true, amount: 0.2 }}
+          className="text-4xl font-bold text-yellow-400 mb-12 text-center"
         >
           Our Services
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {['Market Analysis', 'Investment Solutions', 'Risk Management'].map((service, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+          {services.map((service, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
               initial="offscreen"
               whileInView="onscreen"
-              viewport={{ once: false, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.5 }}
               className="p-8 bg-gray-800/50 rounded-xl border border-yellow-400/30 backdrop-blur-sm hover:border-yellow-400/50 transition-all"
             >
-              <div className="flex flex-col items-start">
-                <h3 className="text-xl font-semibold text-yellow-400 mb-4">{service}</h3>
-                <p className="text-gray-300 text-md">
-                  Comprehensive {service.toLowerCase()} services tailored to your needs
+              <div className="flex flex-col items-center">
+                <div className="mb-6">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-yellow-400 mb-4 text-center">
+                  {service.title}
+                </h3>
+                <p className="text-gray-300 text-md text-center">
+                  {service.description}
                 </p>
               </div>
             </motion.div>
