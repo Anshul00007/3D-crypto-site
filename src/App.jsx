@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar';
-import { Home, About, Services, Contact } from './components/Sections';
+import { Home, About, Services, Contact, Charts } from './components/Sections';
 
 export default function App() {
   return (
@@ -7,6 +7,7 @@ export default function App() {
       <Navbar />
       <Home />
       <About />
+      <Charts/>
       <Services />
       <Contact />
       <footer className="py-8 text-center text-gray-400 border-t border-yellow-400/20">
